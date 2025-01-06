@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isPrime(int p) {
+        if (p <= 1)
+            return false;
+
+        int st = sqrt(p);
+        for (int i = 2; i <= st; i++) {
+            if (p % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    int diagonalPrime(std::vector<std::vector<int>>& nums) { 
+        int mp = 0;
+        int r = nums.size();
+        int c = nums[0].size();
+        for (int i = 0; i < r; i++) {
+            if (isPrime(nums[i][i])) {
+                mp = std::max(mp, nums[i][i]);
+            }
+        }
+        for (int i = 0; i < r; i++) {
+            if (isPrime(nums[i][r - i - 1])) { 
+                mp = std::max(mp, nums[i][r - i - 1]);
+            }
+        }
+        return mp;
+    }
+};
