@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        int w1_s = word1.size();
+        int w2_s = word2.size();
+        string merged; 
+
+        int len = max(w1_s, w2_s); 
+        for (int i = 0; i < len; i++) {
+            if (i < w1_s) 
+                merged += word1[i];
+            if (i < w2_s)
+                merged += word2[i];
+        }
+
+        return merged; 
+    }
+};
