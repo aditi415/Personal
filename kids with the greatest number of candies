@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        int sz = candies.size(); // Get the size of the candies array
+        int m = candies[0]; // Initialize the maximum with the first element
+        
+        // Find the maximum number of candies any child has
+        for (int i = 1; i < sz; i++) {
+            m = max(m, candies[i]);
+        }
+        
+        // Create a result vector
+        vector<bool> ans;
+        
+        // Check if each child can have the greatest number of candies with extraCandies
+        for (int i = 0; i < sz; i++) {
+            ans.push_back(candies[i] + extraCandies >= m);
+        }
+        
+        return ans; // Return the result
+    }
+};
