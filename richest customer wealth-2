@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maximumWealth(vector<vector<int>>& accounts) {
+        int maximumWealth = 0; // Variable to store the maximum wealth
+        int r = accounts.size(); // Number of rows (customers)
+        int c = accounts[0].size(); // Number of columns (banks)
+        
+        for (int i = 0; i < r; i++) {
+            int rowSum = 0; // Sum of wealth for the current customer
+            for (int j = 0; j < c; j++) {
+                rowSum += accounts[i][j]; // Add the wealth in each bank
+            }
+            // Update the maximum wealth if the current row's wealth is greater
+            maximumWealth = std::max(maximumWealth, rowSum);
+        }
+
+        return maximumWealth;
+    }
+};
