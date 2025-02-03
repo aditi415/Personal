@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        unordered_map<char, int> um;
+        
+        // Count characters in string s
+        for (auto n : s) 
+            um[n]++;
+        
+        // Subtract counts using string t
+        for (auto n : t) {
+            if (um.find(n) != um.end() && um[n] > 0)
+                um[n]--;
+            else 
+                return false;
+        } 
+        
+        // Check if all counts are zero
+        for (auto e : um) {
+            if (e.second != 0)
+                return false;
+        }
+        
+        return true; // Return true if all checks pass
+    }
+};
