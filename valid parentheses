@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> stk;
+      for (auto e : s) { 
+                                                             // Push opening brackets to the stack
+            if (e == '(' || e == '{' || e == '[') {
+                stk.push(e);
+            } else {
+                                                            // If stack is empty or the current closing bracket doesn't match top of stack, return false
+                if (stk.empty() || 
+                    (e == ')' && stk.top() != '(') || 
+                    (e == '}' && stk.top() != '{') || 
+                    (e == ']' && stk.top() != '[')) {
+                    return false;
+                }
+                    stk.pop();               // Pop the matched opening bracket
+            }
+        }
+                                         // If stack is empty, all brackets are matched; otherwise, return false
+        return stk.empty();
+    }
+};
