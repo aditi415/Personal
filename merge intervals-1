@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+       struct CompareFirst {
+    bool operator()(const vector<int>& a, const vector<int>& b) const {
+        return a[0] < b[0]; // Use '<' for sorting in ascending order
+    }
+};
+
+
+        int sz=intervals.size();
+        sort(intervals.begin(),intervals.end(),CompareFirst());
+        stack<vector<int>> stk;
+
+        for(int i=1;i<sz;i++){
+            if(!stk.empty()&& intervals[i][0]<=stk.top()[1])
+             stk.top()[1]=intervals[i][1];
+            else
+             stk.push(intervals[i]);
+
+             vector<vector<int>> ans;
+             while(!stk.empty()){
+                ans.push_back(stk.top());
+                stk.pop();
+             }
+        }
+        return ans;
+    }
+};
