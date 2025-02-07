@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int evalRPN(const vector<string>& tokens) {
+        stack<int> stk;
+        
+        for (const string& t : tokens) {
+            if (t == "+" || t == "-" || t == "*" || t == "/") {
+                int rgt = stk.top(); stk.pop();
+                int lft = stk.top(); stk.pop();
+                
+                switch (t[0]) {  // Use first character for switch
+                    case '+': stk.push(lft + rgt); break;
+                    case '-': stk.push(lft - rgt); break;
+                    case '*': stk.push(lft * rgt); break;
+                    case '/': stk.push(lft / rgt); break;
+                }
+            } else {
+                stk.push(stoi(t));  // Convert number string to int and push
+            }
+        }
+        
+        return stk.top();
+    }
+};
