@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        stack<int> stk;
+        int sz=s.size();
+        for(int i=0;i<sz;i++){
+            if(s[i]=='(')
+              stk.push(i);
+            else if(!stk.empty() && s[i]==')')
+               stk.pop();
+            else if(stk.empty() && s[i]==')')
+                s[i] = '#';  
+        }
+        while(!stk.empty()){
+            s[stk.top()] = '#';
+            stk.top();
+        }
+        string ans;
+        for(auto e:s){
+            if(e!='#')
+            ans+=e;
+        }
+        return ans;
+    }
+};
