@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> um;
+        stack<int> st;
+
+        // Step 1: Fill the map with next greater elements in nums2
+        for (int num : nums2) {
+            while (!st.empty() && st.top() < num) {
+                um[st.top()] = num;
+                st.pop();
+            }
+            st.push(num);
+        }
+
+        // Step 2: Iterate over nums1 and retrieve results from the map
+        vector<int> ans;
+        for (int num : nums1) {
+            ans.push_back(um.count(num) ? um[num] : -1);
+        }
+
+        return ans;
+    }
+};
